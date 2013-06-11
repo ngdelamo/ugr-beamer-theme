@@ -1,0 +1,168 @@
+%-------------------------------------------------------------------------------
+% Copyright 2013 by Ignacio G. del Amo
+%
+% This file is part of the UGR Beamer Theme, and is dual-licensed under the
+% terms of either:
+%  a) The GNU General Public License (GPL), Version 3 or any later version 
+%     published by the Free Software Foundation.
+%  b) The LaTeX Project Public License (LPPL), version 1.3c or (at your option)
+%     any later version.
+%
+% The UGR Beamer Theme is free software, and is distributed in the hope that 
+% it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
+% warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+%
+% For further details, see the file ``LICENSE''.
+%-------------------------------------------------------------------------------
+
+
+\ProvidesPackage{beamerouterthemeUGR}
+
+\mode<presentation>
+
+
+
+\useoutertheme{miniframes}
+\beamertemplatenavigationsymbolsempty  %removes navigation bar
+
+
+% ------------------------------------------------------------------------------
+% Navigation bar (header)
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------------
+% Patch for making the miniframes navigation bar to show bullets for 
+% subsections, instead of for each frame (slide) -> uncomment this code if you 
+% have many frames that cause bullets from sibling sections to overlap. 
+% The credit of this patch belongs to @diabonas for posting it here:
+% http://tex.stackexchange.com/questions/64333/one-navigation-bullet-per-subsection-with-subsection-false-in-custom-beamer-them
+% ------------------------------------------------------------------------------
+\makeatletter
+\patchcmd{\slideentry}{\advance\beamer@xpos by1\relax}{}{}{}
+\def\beamer@subsectionentry#1#2#3#4#5{\advance\beamer@xpos by1\relax}%
+\makeatother
+
+
+% ------------------------------------------------------------------------------
+% Template for the footline
+% ------------------------------------------------------------------------------
+\defbeamertemplate*{footline}{UGR theme} {%
+    \vfill%
+    
+    \center{\color{main-color}\rule{0.98\paperwidth}{0.5pt}}
+    
+    \vskip1pt%
+    \hbox {
+        % University of Granada logo
+        \begin{beamercolorbox}[wd=0.19\paperwidth,ht=6mm,dp=1.125ex,leftskip=0.3cm,plus1fill,rightskip=0.3cm]{logo
+        in head/foot}%
+            \pgfdeclareimage[height=5mm]{logouniversity}{img/logouniversity}%
+            \pgfuseimage{logouniversity}%
+            \vskip1pt
+        \end{beamercolorbox}%
+        
+        % Title and author
+        \begin{beamercolorbox}[wd=0.7\paperwidth,ht=6mm,leftskip=0.1cm,rightskip=0.3cm plus1fill]{title in head/foot}%
+            \textbf{ \inserttitle \; - \; {\color{main-color}\insertauthor}} \newline
+            \vskip2pt
+            \insertdate
+            \vskip1pt
+        \end{beamercolorbox}%
+        
+        % Research group logo
+        \begin{beamercolorbox}[wd=0.05\paperwidth,ht=6mm]{page number in head/foot}%
+            \pgfdeclareimage[height=4mm]{logogroup}{img/logogroup}%
+            \pgfuseimage{logogroup}%
+            \vskip1pt
+        \end{beamercolorbox}%
+    }%
+    \vskip2pt%
+}
+
+
+% ------------------------------------------------------------------------------
+% Template for the title page
+% ------------------------------------------------------------------------------
+\defbeamertemplate*{title page}{UGR theme}[1][] {%
+
+ 	\begin{beamercolorbox}[wd=\paperwidth,ht=0.22\paperheight]{normal text}%
+		\hbox {
+			% University of Granada logo
+			\begin{beamercolorbox}[wd=0.33\paperwidth,ht=0.15\paperheight,leftskip=0.02\paperwidth,
+			dp=-0.15\paperheight]{logo in head/foot}%
+				\pgfdeclareimage[height=0.1\paperheight]{logouniversity}{img/logouniversity}%
+				\pgfuseimage{logouniversity}%
+			\end{beamercolorbox}%
+			
+			% Department logo
+			\begin{beamercolorbox}[wd=0.33\paperwidth,ht=0.15\paperheight,dp=-0.15\paperheight]{logo
+			in head/foot}%
+				\begin{center}
+					\pgfdeclareimage[height=0.15\paperheight]{logodepartment}{img/logodepartment}%
+					\pgfuseimage{logodepartment}%
+				\end{center}
+				\vskip -0.06\paperheight
+			\end{beamercolorbox}%
+			
+			
+			% Research group logo
+			\begin{beamercolorbox}[wd=0.33\paperwidth,ht=0.15\paperheight,rightskip=0.03\paperwidth,
+			dp=-0.15\paperheight]{logo in head/foot}%
+				\hfill
+				\pgfdeclareimage[height=0.075\paperheight]{logogroup}{img/logogroup}%
+				\pgfuseimage{logogroup}%
+			\end{beamercolorbox}%
+		}%
+		
+		\vskip 0.06\paperheight
+	\end{beamercolorbox}%
+
+
+ 	\bigskip
+
+	% Title
+ 	\begin{beamercolorbox}[wd=\paperwidth,ht=0.2\paperheight]{title}%
+	 	\begin{beamercolorbox}[wd=0.9\paperwidth,ht=0.15\paperheight,leftskip=0.105\paperwidth]{title}%
+			\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par
+		\end{beamercolorbox}
+		\vskip 0.04\paperheight
+	\end{beamercolorbox}
+	
+	\medskip
+
+	% Subtitle
+	\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+
+	\bigskip
+	\bigskip
+	\bigskip
+	\bigskip
+	\bigskip
+	\bigskip
+
+	% Author
+	\usebeamerfont{authortitle}\usebeamercolor[fg]{authortitle}\authortitle\par
+	\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par
+
+	\bigskip
+
+	% Advisor-related settings
+	\usebeamerfont{advisortitle}\usebeamercolor[fg]{advisortitle}\advisortitle\par
+	\usebeamerfont{advisor}\usebeamercolor[fg]{advisor}\advisor\par
+
+
+	\bigskip
+	
+	\hbox {
+		\begin{beamercolorbox}[wd=0.5\paperwidth,ht=0.5\paperheight,leftskip=0.51\paperwidth]{normal
+		text}%
+			\includegraphics[width=0.4\paperwidth]{img/titlepageimage}
+			\vskip 0.4\paperheight
+		\end{beamercolorbox}%
+	}
+
+}
+
+
+
+\mode<all>
+

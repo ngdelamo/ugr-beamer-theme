@@ -1,0 +1,82 @@
+%-------------------------------------------------------------------------------
+% Copyright 2013 by Ignacio G. del Amo
+%
+% This file is part of the UGR Beamer Theme, and is dual-licensed under the
+% terms of either:
+%  a) The GNU General Public License (GPL), Version 3 or any later version 
+%     published by the Free Software Foundation.
+%  b) The LaTeX Project Public License (LPPL), version 1.3c or (at your option)
+%     any later version.
+%
+% The UGR Beamer Theme is free software, and is distributed in the hope that 
+% it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
+% warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+%
+% For further details, see the file ``LICENSE''.
+%-------------------------------------------------------------------------------
+
+
+% Package for creating boxes with a coloured frame around
+\usepackage{tcolorbox}
+
+
+\ProvidesPackage{beamerinnerthemeUGR}
+\mode<presentation>
+
+
+
+% Use circles for 'bullets'
+\useinnertheme{circles}
+
+% When using the '\uncover' command, do not make yet-uncovered parts completely
+% invisible, but semi-transparent instead
+\setbeamercovered{transparent}
+
+% Green colorbox
+\newcommand{\greenbox}[2]{
+	\setbeamercolor{uppercol}{fg=white,bg=YellowGreenDark}
+	\setbeamercolor{lowercol}{fg=black!85,bg=YellowGreenLight}
+	
+	\begin{beamerboxesrounded}[upper=uppercol,lower=lowercol,shadow=false]{ #1 }  
+	#2
+	\end{beamerboxesrounded} 
+}
+
+% Red colorbox
+\newcommand{\redbox}[2]{
+	\setbeamercolor{uppercol}{fg=white,bg=main-color}
+	\setbeamercolor{lowercol}{fg=black!85,bg=YellowOrangeLight}
+	
+	\begin{beamerboxesrounded}[upper=uppercol,lower=lowercol,shadow=false]{ #1 }  
+	#2
+	\end{beamerboxesrounded} 
+}
+
+%-------------------------------------------------------------------------------
+% These options will be applied to all `tcolorboxes`
+% See http://tex.stackexchange.com/questions/11211/can-i-have-framed-blocks-in-beamer
+%-------------------------------------------------------------------------------
+\tcbset{%
+    noparskip,
+    width=\textwidth,
+    colframe=main-color, 	%color of frame and title background
+    coltitle=white, 		%color of title text 
+%     fonttitle=\bfseries,
+    colback=white, 			%background color of the box
+    coltext=black!85, 		%color of body text
+    boxrule=0.3pt, 			%width of the frame line
+%     alerted/.style={coltitle=red, 
+%                      colframe=gray!40},
+%     example/.style={coltitle=black, 
+%                      colframe=green!20,             
+%                      colback=green!5},
+	% inner padding: separation between text and frame
+	left=0pt,
+	right=0pt,
+	top=0pt,
+	bottom=0pt,
+}
+
+
+
+\mode<all>
